@@ -7,10 +7,10 @@ if (process.env.JAWSDB_URL) {
 } else {
   connection = mysql.createConnection({
     host: "localhost",
-    port: 3306,
+    port: 8080,
     user: "root",
-    password: "Password",
-    database: "notetaker"
+    password: "Pizzatime676",
+    database: "notetaker_db"
   });
 }
 
@@ -20,6 +20,5 @@ connection.config.typeCast = function (field, next) {
   }
   return next();
 };
-
 
 module.exports = connection;

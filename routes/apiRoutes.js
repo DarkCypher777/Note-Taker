@@ -1,35 +1,30 @@
 // LOAD DATA
-var noteData = require("../data/noteData");
-var waitListData = require("../data/waitinglistData");
+var router = require("express").Router();
+var connection = require("../db/connection.js");
 
 // ROUTING
-module.exports = function(app) {
+router.get("/api/newNote", function (req, res) {
+  connection.query("SELECT * FROM notes", function (err, dbnewNote) {
+    if (err) throw err;
 
-  app.get("/api/notes", function(req, res) {
-    res.json(noteData);
+    res.json(dbnewNote);
   });
+});
 
-  app.get("/api/waitlist", function(req, res) {
-    res.json(waitListData);
+router.post("/api/newNote", function (req, res) {
+  connection.query("INSERT INTO notes SET ?", [req.body], function (err, result) {
+    if (err) throw err;
+
+    res.json(result);
   });
+});
 
-  app.post("/api/notes", function(req, res) {
+router.put("/api/newNote/:id", function (req, res) {
+  connection.query("UPDATE notes SET ? WHERE id = ?", [req.body, req.params.id], function (err, result) {
+    if (err) throw err;
 
-    if (noteData.length < 5) {
-      noteData.push(req.body);
-      res.json(true);
-    }
-    else {
-      waitListData.push(req.body);
-      res.json(false);
-    }
+    res.json(result);
   });
+});
 
-
-  app.post("/api/clear", function(req, res) {
-    noteData.length = 0;
-    waitListData.length = 0;
-
-    res.json({ ok: true });
-  });
-};
+module.exports = router;
