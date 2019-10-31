@@ -1,4 +1,4 @@
-USE notetaker_db;
+USE note_db;
 
 INSERT INTO notes (title, body)
 VALUES

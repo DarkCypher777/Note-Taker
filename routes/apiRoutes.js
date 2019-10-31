@@ -1,6 +1,6 @@
 // LOAD DATA
 var router = require("express").Router();
-var connection = require("../db/connection.js");
+var connection = require("../db/connection");
 
 // ROUTING
 router.get("/api/newNote", function (req, res) {
