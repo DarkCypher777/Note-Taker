@@ -1,9 +1,9 @@
 // LOAD DATA
-var router = require("express").Router();
+var app = require("express").Router();
 var connection = require("../db/connection");
 
 // ROUTING
-router.get("/api/newNote", function (req, res) {
+app.get("/api/newNote", function (req, res) {
   connection.query("SELECT * FROM notes", function (err, dbnewNote) {
     if (err) throw err;
 
@@ -11,7 +11,7 @@ router.get("/api/newNote", function (req, res) {
   });
 });
 
-router.post("/api/newNote", function (req, res) {
+app.post("/api/newNote", function (req, res) {
   connection.query("INSERT INTO notes SET ?", [req.body], function (err, result) {
     if (err) throw err;
 
@@ -19,7 +19,7 @@ router.post("/api/newNote", function (req, res) {
   });
 });
 
-router.put("/api/newNote/:id", function (req, res) {
+app.put("/api/newNote/:id", function (req, res) {
   connection.query("UPDATE notes SET ? WHERE id = ?", [req.body, req.params.id], function (err, result) {
     if (err) throw err;
 
@@ -27,4 +27,12 @@ router.put("/api/newNote/:id", function (req, res) {
   });
 });
 
-module.exports = router;
+app.delete("/api/newNote/:id", function (req, res) {
+  connection.query("DELETE notes SET ? WHERE id = ?", [req.body, req.params.id], function (err, result) {
+    if (err) throw err;
+
+    res.json(result);
+  });
+});
+
+module.exports = app;
