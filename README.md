@@ -6,7 +6,7 @@ In this activity users are able to use a note-taking application to create, read
 
 ## Setup
 
-When seting up make sure to change the password in connection.js to what your mysql password is.
+When seting up make sure to change the password in connection.js to what your MySQL password is.
 
 Next, install the application dependencies.
 
@@ -24,7 +24,3 @@ Now, open the local application on port 8080 at the URL: `http://localhost:3000/
 ## Who made this
 
 Ben Diamond
-
-## Copyright
-
-(C) Ben Diamond 2019. All Rights Reserved.
