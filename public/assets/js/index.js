@@ -4,7 +4,7 @@ var $newNotebody = $("#body");
 var $submitBtn = $("#newNote-submit");
 var $deleteBtn = $("#newNote-delete");
 
-var getAndRendernewNote = function () {
+var makeNewNote = function () {
     $.ajax({
         url: "/api/newNote",
         method: "GET"
@@ -60,7 +60,7 @@ var handlenewNoteSubmit = function (event) {
             data: newNote
         })
         .then(function () {
-            getAndRendernewNote();
+            makeNewNote();
             $newNotetitle.val("");
             $newNotebody.val("");
         });
